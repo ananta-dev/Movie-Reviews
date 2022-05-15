@@ -21,13 +21,13 @@ export default class MoviesDAO {
         moviesPerPage = 20,
     } = {}) {
         let query;
+
+        // prettier-ignore
         if (filters) {
             if ("title" in filters) {
                 query = { $text: { $search: filters["title"] } };
             } else if ("rated" in filters) {
-                
-                filters.hasOwnProperty("rated")) {
-                query = { rated: filter["rated"] };
+                query = { "rated": { $eq: filters["rated"] } };
             }
         }
 
@@ -45,6 +45,4 @@ export default class MoviesDAO {
             return { moviesList: [], totalNumMovies: 0 };
         }
     }
-
-
 }
